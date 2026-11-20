@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 980" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b6ff3b"/></marker>
+  </defs>
+  <rect width="1100" height="980" fill="#0d1014"/>
+  <text x="550" y="50" text-anchor="middle" font-size="30" font-weight="700" fill="#fff">Jev Smart Support Triage — Architecture</text>
+  <text x="550" y="80" text-anchor="middle" font-size="16" fill="#9aa5b1">Jev makes the decision · Your code controls the action · LangChain writes the reply</text>
+
+  <!-- Step 1 -->
+  <rect x="300" y="110" width="500" height="90" rx="14" fill="#151a21" stroke="#2a323d"/>
+  <circle cx="340" cy="155" r="18" fill="#b6ff3b"/><text x="340" y="161" text-anchor="middle" font-weight="700" fill="#000">1</text>
+  <text x="375" y="148" font-size="19" font-weight="700" fill="#fff">Browser UI</text>
+  <text x="375" y="173" font-size="14" fill="#9aa5b1">templates/index.html · static/app.js · static/style.css</text>
+  <text x="375" y="191" font-size="13" fill="#6f7b88">Agent pastes a ticket or clicks a demo button</text>
+  <line x1="550" y1="200" x2="550" y2="245" stroke="#b6ff3b" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="565" y="228" font-size="13" fill="#b6ff3b">POST /api/analyze {ticket}</text>
+
+  <!-- Step 2 -->
+  <rect x="300" y="250" width="500" height="90" rx="14" fill="#151a21" stroke="#2a323d"/>
+  <circle cx="340" cy="295" r="18" fill="#b6ff3b"/><text x="340" y="301" text-anchor="middle" font-weight="700" fill="#000">2</text>
+  <text x="375" y="288" font-size="19" font-weight="700" fill="#fff">FastAPI backend — app.py</text>
+  <text x="375" y="313" font-size="14" fill="#9aa5b1">Validates input (5–8000 chars) · orchestrates the pipeline</text>
+  <text x="375" y="331" font-size="13" fill="#6f7b88">Also serves /, /health, /api/demo-tickets</text>
+  <line x1="550" y1="340" x2="550" y2="385" stroke="#b6ff3b" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <!-- Step 3 -->
+  <rect x="150" y="390" width="800" height="150" rx="14" fill="#151a21" stroke="#b6ff3b"/>
+  <circle cx="190" cy="435" r="18" fill="#b6ff3b"/><text x="190" y="441" text-anchor="middle" font-weight="700" fill="#000">3</text>
+  <text x="225" y="428" font-size="19" font-weight="700" fill="#fff">Jev decision layer — services/jev_service.py</text>
+  <text x="225" y="452" font-size="14" fill="#9aa5b1">ONE HTTPS request to TypeSafe System One with 4 typed questions:</text>
+  <g font-size="13" font-weight="600">
+    <rect x="180" y="470" width="190" height="52" rx="10" fill="#1e2530"/><text x="275" y="492" text-anchor="middle" fill="#fff">department</text><text x="275" y="510" text-anchor="middle" fill="#9aa5b1" font-weight="400">choice + confidence</text>
+    <rect x="385" y="470" width="190" height="52" rx="10" fill="#1e2530"/><text x="480" y="492" text-anchor="middle" fill="#fff">urgency</text><text x="480" y="510" text-anchor="middle" fill="#9aa5b1" font-weight="400">score 0–3 + confidence</text>
+    <rect x="590" y="470" width="170" height="52" rx="10" fill="#1e2530"/><text x="675" y="492" text-anchor="middle" fill="#fff">refund_related</text><text x="675" y="510" text-anchor="middle" fill="#9aa5b1" font-weight="400">probability</text>
+    <rect x="775" y="470" width="150" height="52" rx="10" fill="#1e2530"/><text x="850" y="492" text-anchor="middle" fill="#fff">human_review</text><text x="850" y="510" text-anchor="middle" fill="#9aa5b1" font-weight="400">probability</text>
+  </g>
+  <line x1="550" y1="540" x2="550" y2="585" stroke="#b6ff3b" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="565" y="568" font-size="13" fill="#b6ff3b">JevDecision (typed result)</text>
+
+  <!-- External API -->
+  <rect x="860" y="400" width="0" height="0"/>
+
+  <!-- Step 4 -->
+  <rect x="150" y="590" width="800" height="120" rx="14" fill="#151a21" stroke="#2a323d"/>
+  <circle cx="190" cy="635" r="18" fill="#b6ff3b"/><text x="190" y="641" text-anchor="middle" font-weight="700" fill="#000">4</text>
+  <text x="225" y="628" font-size="19" font-weight="700" fill="#fff">Deterministic routing — choose_route() in app.py</text>
+  <text x="225" y="654" font-size="14" fill="#9aa5b1">Plain business rules, no AI:</text>
+  <text x="225" y="676" font-size="15" font-family="Consolas, monospace" fill="#b6ff3b">human_prob ≥ 0.65  OR  dept_conf &lt; 0.60  OR  urgency ≥ 2.5</text>
+  <text x="225" y="698" font-size="13" fill="#6f7b88">→ "Department → Human specialist"  else  → "Department queue"</text>
+  <line x1="550" y1="710" x2="550" y2="755" stroke="#b6ff3b" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="565" y="738" font-size="13" fill="#b6ff3b">ticket + decision + route</text>
+
+  <!-- Step 5 -->
+  <rect x="150" y="760" width="800" height="100" rx="14" fill="#151a21" stroke="#2a323d"/>
+  <circle cx="190" cy="805" r="18" fill="#b6ff3b"/><text x="190" y="811" text-anchor="middle" font-weight="700" fill="#000">5</text>
+  <text x="225" y="798" font-size="19" font-weight="700" fill="#fff">LangChain + Groq reply — services/response_chain.py</text>
+  <text x="225" y="823" font-size="14" fill="#9aa5b1">Prompt | ChatGroq (llama-3.1-8b-instant) | StrOutputParser</text>
+  <text x="225" y="844" font-size="13" fill="#6f7b88">Optional &amp; non-blocking: if it fails, the Jev results still render</text>
+  <line x1="550" y1="860" x2="550" y2="895" stroke="#b6ff3b" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <!-- Step 6 -->
+  <rect x="300" y="900" width="500" height="55" rx="14" fill="#151a21" stroke="#2a323d"/>
+  <circle cx="340" cy="927" r="18" fill="#b6ff3b"/><text x="340" y="933" text-anchor="middle" font-weight="700" fill="#000">6</text>
+  <text x="375" y="923" font-size="17" font-weight="700" fill="#fff">JSON → UI renders 3 cards</text>
+  <text x="375" y="943" font-size="13" fill="#9aa5b1">Jev decision · Automation route · Suggested reply</text>
+
+  <!-- side badges -->
+  <g font-size="13" fill="#9aa5b1">
+    <rect x="20" y="395" width="115" height="60" rx="10" fill="#151a21" stroke="#2a323d"/><text x="77" y="420" text-anchor="middle" fill="#fff" font-weight="700">TypeSafe API</text><text x="77" y="440" text-anchor="middle">external</text>
+    <rect x="20" y="765" width="115" height="60" rx="10" fill="#151a21" stroke="#2a323d"/><text x="77" y="790" text-anchor="middle" fill="#fff" font-weight="700">Groq API</text><text x="77" y="810" text-anchor="middle">external</text>
+  </g>
+  <line x1="150" y1="425" x2="135" y2="425" stroke="#b6ff3b" stroke-width="2"/>
+  <line x1="150" y1="795" x2="135" y2="795" stroke="#b6ff3b" stroke-width="2"/>
+</svg>

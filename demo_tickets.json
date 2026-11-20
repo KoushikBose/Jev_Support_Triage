@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Billing + refund",
+    "ticket": "I was charged twice for my Pro subscription this morning. I need the duplicate charge refunded because our finance team is closing the books today. Please help ASAP."
+  },
+  {
+    "name": "Technical bug",
+    "ticket": "My CSV export stopped working after today's update. I can still use the dashboard, but I need the export for a report tomorrow."
+  },
+  {
+    "name": "Account access",
+    "ticket": "I cannot access the workspace after my admin changed my email address. Please restore access."
+  },
+  {
+    "name": "Feature request",
+    "ticket": "It would be really helpful if we could schedule recurring exports to email. Right now my team has to download reports manually every Monday. Is this on your roadmap?"
+  },
+  {
+    "name": "Cancellation",
+    "ticket": "We are switching to another tool, so please cancel our Team plan at the end of this billing cycle and confirm that we won't be charged again."
+  },
+  {
+    "name": "Security concern",
+    "ticket": "I received a login alert from a country I have never been to. I think someone may have accessed my account. Please lock it and help me reset everything."
+  },
+  {
+    "name": "Angry / escalation",
+    "ticket": "This is the third time I'm contacting support about the same API timeout issue and nobody has fixed it. Our production integration is down and I want to speak to a manager immediately."
+  },
+  {
+    "name": "Vague / unclear",
+    "ticket": "It's not working. Please fix."
+  }
+]
